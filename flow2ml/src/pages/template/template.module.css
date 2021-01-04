@@ -1,0 +1,79 @@
+.NavLinks{
+    color:#fff;
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: var(--font-family);
+}
+.NavLinks:hover{
+    color:#fff;
+    font-family: var(--font-family);
+}
+
+.orgName{
+    font-size: 30px;
+    font-family: var(--font-family);
+}
+.highlightNumber{
+    color:red;
+    font-size: 35px;
+    font-family: var(--font-family);
+}
+.orgNameBig{
+    color:red;
+    font-size: 70px;
+    font-family: var(--font-family);
+}
+
+.start{
+    text-align: center;
+    font-family: var(--font-family);
+}
+
+.codeSymbol{
+    background: #198754!important;
+    color: #fff;
+    padding: 15px;
+    border-radius: 18px;
+}
+
+.installBox{
+    background-color: #f7f7f9;
+    height: 80px;
+    padding: 25px;
+    font-family: var(--font-family);
+}
+
+.dollarSign{
+    color: blue;
+}
+.install{
+    margin-left: 15px;
+    font-family: var(--font-family);
+}
+
+.steps{
+    background-color: rgb(30, 30, 30);
+    color:#fff;
+    padding:30px;
+    font-size:18px;
+}
+.brown{
+    color: rgb(206, 145, 120);
+    font-family: var(--font-family);
+}
+.purple{
+    color: #9c27b0; 
+    font-family: var(--font-family);
+}
+.green{
+    color: #0d904f;
+    font-family: var(--font-family);
+}
+
+@media screen and (max-width:720px){
+    .jumboHeadding{
+        font-family: 20px;
+        font-family: var(--font-family);
+    }
+}
