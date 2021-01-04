@@ -11,7 +11,6 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Flow2ML</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header className={styles.header}>

@@ -12,7 +12,7 @@ export default function SampleCode() {
                <span><span className={styles.purple}>from</span> flow2ml <span className={styles.purple}>import</span> Flow</span><br />
                <span>flow = Flow(<span className={styles.brown}> 'dataset_dir' </span>, <span className={styles.brown}>'data_dir'</span> )</span><br /><br />
                <span>filters = [<span className={styles.brown}>"median"</span>,<span className={styles.brown}>"laplacian"</span>,
-               <span className={styles.brown}>"sobelx"</span>,<span className={styles.brown}>"sobely"</span>,<span className={styles.brown}>"gaussian"</span>]</span><br />
+               <span className={styles.brown}>"gaussian"</span>]</span><br />
                <span>flow.applyFilters( filters )</span><br />
                <span>(train_x, train_y, val_x, val_y) = flow.getDataset( img_dimensions, test_val_split )</span><br />
             </div>
