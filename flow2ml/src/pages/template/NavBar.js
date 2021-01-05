@@ -25,14 +25,10 @@ export default function Navbar() {
     <div className={styles.topNavBar}>
         <AppBar position="static">
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-                </IconButton>
                 <Typography variant="h6" className={classes.title}>Flow<span className={styles.highlightNumber}>2</span>Ml
                 </Typography>
                 <div className="d-flex justify-content-around">
-                    <a href="#" className={styles.NavLinks}>Installation</a>
-                    <a  href="#" className={styles.NavLinks}>Docs</a>
+                    <a href="#installation" className={styles.NavLinks}>Installation</a>
                 </div>
                 <Button href="https://github.com/flow2ml" style={{"outline":"0"}} color="secondary" variant="contained">Github</Button>
             </Toolbar>
