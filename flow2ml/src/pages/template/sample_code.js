@@ -6,11 +6,11 @@ export default function SampleCode() {
         <div className="container">
             <h4>Write pre-Processing steps in minutes.</h4><br />
             <div className={styles.steps}>
-                <span><span className={styles.green}># To be given input by the user.</span></span><br />
-                <span>img_dimensions = (<span className={styles.green}>150</span>,<span className={styles.green}>150</span>)</span><br />
-                <span>test_val_split = <span className={styles.green}>0.1</span></span><br /><br />
-               <span><span className={styles.purple}>from</span> flow2ml <span className={styles.purple}>import</span> Flow</span><br />
-               <span>flow = Flow(<span className={styles.brown}> 'dataset_dir' </span>, <span className={styles.brown}>'data_dir'</span> )</span><br /><br />
+            <span><span className={styles.purple}>import</span> flow2ml <span className={styles.purple}>as</span> f2m</span><br /><br />
+               <span><span className={styles.green}># To be given input by the user.</span></span><br />
+               <span>img_dimensions = (<span className={styles.green}>299</span>,<span className={styles.green}>299</span>)</span><br />
+               <span>test_val_split = <span className={styles.green}>0.1</span></span><br /><br />
+               <span>flow = f2m.Flow(<span className={styles.brown}> 'dataset_dir' </span>, <span className={styles.brown}>'data_dir'</span> )</span><br /><br />
                <span>filters = [<span className={styles.brown}>"median"</span>,<span className={styles.brown}>"laplacian"</span>,
                <span className={styles.brown}>"gaussian"</span>]</span><br />
                <span>flow.applyFilters( filters )</span><br />
