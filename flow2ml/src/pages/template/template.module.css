@@ -1,12 +1,12 @@
 .NavLinks{
-    color:#fff;
+    color:#000;
     text-decoration: none;
     margin-left: 5px;
     margin-right: 5px;
     font-family: var(--font-family);
 }
 .NavLinks:hover{
-    color:#fff;
+    color: rgba(0,0,0,0.6);
     font-family: var(--font-family);
 }
 
@@ -14,10 +14,21 @@
     font-size: 30px;
     font-family: var(--font-family);
 }
+.topNavBar{
+    border-bottom: 2px dashed #000;
+}
 .highlightNumber{
-    color:red;
+    color:#5ab8bf;
     font-size: 35px;
     font-family: var(--font-family);
+}
+.navbarHeading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbarHeading img{
+    margin-top: 1px;
 }
 .orgNameBig{
     color:red;

@@ -20,7 +20,7 @@ export default function Install() {
                             <AttachMoneyRoundedIcon className={styles.dollarSign}/>
                         </div>
                         <div className={styles.Instruction}>
-                            <span className={styles.install}>pip install flow2ml==1.0.1</span>
+                            <span className={styles.install}>pip install flow2ml==1.0.2</span>
                         </div>
                     </div>
                     </div>
