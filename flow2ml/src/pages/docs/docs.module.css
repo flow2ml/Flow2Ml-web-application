@@ -1,0 +1,62 @@
+.NavLinks{
+    color:#000;
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: var(--font-family);
+}
+.NavLinks:hover{
+    color: rgba(0,0,0,0.6);
+    font-family: var(--font-family);
+}
+.sideAvailableFunc{
+    padding: 12%;
+    font-family: var(--font-family);
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 100vh;
+}
+.mainContentBox{
+    font-family: var(--font-family);
+    color:var(--documentation-text-color-inactive);
+}
+.codeArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.codeArea .DarkLightModeButton{
+    position: absolute;
+    top: 10%;
+    left: 92%;
+}
+.codeArea .CopyButton{
+    position: absolute;
+    top: 10%;
+    left: 96%;
+}
+.logoBlock{
+    display: flex;
+    align-items: center;
+}
+.logoBlock img{
+    border-radius:10px;
+}
+.orgNameBig{
+    color:red;
+    font-size: 70px;
+    font-family: var(--font-family);
+}  
+.toc{
+    font-family: var(--font-family);
+    color:var(--documentation-text-color-inactive);
+    padding: 20px;
+} 
+.sideBarLogo{
+    width:50px;
+    height:50px;
+    border-radius:10px;
+    margin-top:-10px;
+    margin-right:10px;
+}

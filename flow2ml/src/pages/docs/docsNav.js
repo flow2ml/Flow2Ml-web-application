@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
-import styles from './template.module.css' 
+import styles from './docs.module.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { AppBar, Grid } from '@material-ui/core';
@@ -12,11 +12,10 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from '@material-ui/core/Divider';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import Hidden from '@material-ui/core/Hidden';
-import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import EmojiObjectsRoundedIcon from '@material-ui/icons/EmojiObjectsRounded';
+import Hidden from '@material-ui/core/Hidden';
 import { useRouter } from 'next/router';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,32 +33,18 @@ const useStyles = makeStyles((theme) => ({
       padding:"5%",
       marginTop: "15px",
       "& div":{
-        display: 'flex',
-        justifyContent: 'around',
-        alignItems: 'center',
         width:"90%",
         marginLeft:"10px",
         fontFamily: "Dosis, sans-serif",
       },
     },
-    sideBarLogo: {
-      width:"50px",
-      height:"50px",
-      borderRadius:"10px",
-      marginTop:"-10px",
-      maringRight:"10px",
-    },
     fullList: {
       width: 'auto',
     },
-    sideNavName:{
-      flexGrow: 4,
-    },
-    hoverATags:{
-      '&:hover': {
-        textDecoration: "none",
-        color:"fff",
-      }
+    HeaderSideNavDocs: {
+        display: 'flex',
+        justifyContent: 'around',
+        alignItems: 'center',
     },
     search: {
       position: 'relative',
@@ -74,13 +59,6 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1),
         width: 'auto',
       },
-      display:'flex',
-      alignItems: 'center',
-    },
-    topBarHeadings: {
-      display: 'flex',
-      justifyContent: 'around',
-      alignItems: 'center',
     },
     searchIcon: {
       padding: theme.spacing(0, 2),
@@ -110,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function Navbar() {
+export default function DocsNavbar() {
 
   const router = useRouter()
   const goToDocs = () =>{
@@ -148,35 +126,46 @@ export default function Navbar() {
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
       >
-
-          <div>
-            <img className={classes.sideBarLogo} src="logo.png"/>
+          <div className={classes.HeaderSideNavDocs}>
+          <Avatar alt="Remy Sharp" src="/logo.png" />
             <h5 className={classes.title}>Flow2Ml</h5>
             <CloseRoundedIcon fontSize='large'/>
           </div>
           <Divider />
           <br />
 
-          <div>
-            <h5 className={classes.sideNavName}>Install</h5>
-            <GetAppRoundedIcon fontSize='medium'/>
+          <div className={classes.install}>
+            <h5>Installation</h5>
+            <div>
+                <h6>pip</h6>
+                <h6>Docker</h6>
+            </div>
           </div>
+          
+          <Divider />
+          <br />
+          
+          <div className={classes.docs}>
+            <h5>Documentation</h5>
+            {/* For loop to get all the functions available as part of flow2ml. */}
+            {/* Attaching sample functions. */}
+            <div>
+                <h6>applyFilters</h6>
+                <h6>applyAugumentation</h6>
+                <h6>Results</h6>
+            </div>
+          </div>
+
           <Divider />
           <br />
 
-          <div onClick={() => goToDocs()}>
-            <h5 className={classes.sideNavName}>Documentation</h5>
-            <EmojiObjectsRoundedIcon fontSize='medium'/>
+          <div className={classes.examples}>
+            <h5>Examples</h5>
+            <div>
+                <h6>cats Vs Dogs</h6>
+                <h6>Horses vs Humans</h6>
+            </div>
           </div>
-          <Divider />
-          <br />
-
-          <div>
-            <h5 className={classes.sideNavName}>Github</h5>
-            <GitHubIcon fontSize='medium'/>
-          </div>
-          <Divider />
-          <br />
       </div>
     );
 
@@ -194,25 +183,27 @@ export default function Navbar() {
                     direction="row"
                     spacing={1}
                   >
-                      <Grid item sm={1} xs={2} md={1}>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer("left", true)} >
-                          <MenuIcon className={classes.menuIconButton}/>
-                        </IconButton>
-                        <Drawer anchor="left" open={state["left"]} onClose={toggleDrawer("left", false)}>
-                              {list("left")}
-                        </Drawer>
-                      </Grid>
+                      <Hidden only={['md', 'lg', 'xl']}>
+                        <Grid item sm={1} xs={2} md={1}>
+                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer("left", true)} >
+                            <MenuIcon className={classes.menuIconButton}/>
+                            </IconButton>
+                            <Drawer anchor="left" open={state["left"]} onClose={toggleDrawer("left", false)}>
+                                {list("left")}
+                            </Drawer>
+                        </Grid>
+                      </Hidden>
                 
                       <Grid item sm={2} xs={4} md={1}>
-                        <div className={styles.navbarHeading}>
-                          <img className={classes.sideBarLogo} src="logo.png" width="50" height="50" style={{"marginRight":"5px"}}/>
+                        <div className={styles.logoBlock}>
+                          <Avatar alt="Remy Sharp" src="/logo.png" />
                           <h5 className={classes.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
                         </div>
                       </Grid>
                       <Grid item sm={1}></Grid>
 
                       <Hidden only={['sm', 'xs']}>
-                        <Grid item sm={4} md={5} className={classes.topBarHeadings}>
+                        <Grid item sm={4} md={5}>
                             <a href="#installation" className={styles.NavLinks}>Installation</a>
                             <a onClick={() => goToDocs()} className={styles.NavLinks}>Documentation</a>
                             <a href="#" className={styles.NavLinks}>Examples</a>
@@ -234,15 +225,15 @@ export default function Navbar() {
                           />
                         </div>
                       </Grid>
-                      
-                      <Hidden only={['xs', 'sm']}>
+
+                      <Hidden only='xs'>
                         <Grid item sm={1} md={1}>
                             <Button className={classes.hoverATags} style={{"outline":"0"}} color="primary" variant="contained" href="https://github.com/flow2ml">Github</Button>
                         </Grid>
                       </Hidden>
 
-                      <Hidden only={['md', 'lg', 'xl']}>
-                        <Grid item xs={1}>
+                      <Hidden only={['sm', 'md', 'lg', 'xl']}>
+                        <Grid item sm={1}>
                             <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
                         </Grid>
                       </Hidden>
