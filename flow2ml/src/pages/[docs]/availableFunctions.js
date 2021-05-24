@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   AccordionBar:{
-    boxShadow: 'none',
+    boxShadow: 'none!important',
   },
   installationList:{
     display: 'block'
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const availableFunctionsList = [
-  "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', 
+  "applyFilters", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', 
 ];
 
 export default function AvailableFunctions() {
@@ -50,8 +50,8 @@ export default function AvailableFunctions() {
             <Typography className={classes.heading}>Installation</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
-              <div><Link href='/installation/pip'><Button color="primary" className={classes.button}>Pip</Button></Link></div>
-              <div><Link href='/installation/docker'><Button color="primary" className={classes.button}>Docker</Button></Link></div>
+              <div style={urlParams[1] == "pip" ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href='/installation/pip'><Button color="primary" className={classes.button}>Pip</Button></Link></div>
+              <div style={urlParams[1] == "docker" ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href='/installation/docker'><Button color="primary" className={classes.button}>Docker</Button></Link></div>
           </AccordionDetails>
         </Accordion>
         
@@ -64,7 +64,7 @@ export default function AvailableFunctions() {
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
             {availableFunctionsList.map((func) => (
-                <div style={urlParams[1] == func ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '154%', 'borderRadius': '5px'} : {}}><Link href={'/docs/'+func}><Button color="primary" key={func} className={classes.button}>{func}</Button></Link></div>
+                <div style={urlParams[1] == func ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href={'/docs/'+func}><Button color="primary" key={func} className={classes.button}>{func}</Button></Link></div>
             ))}
           </AccordionDetails>
         </Accordion>
@@ -77,8 +77,8 @@ export default function AvailableFunctions() {
             <Typography className={classes.heading}>Examples</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
-              <div><Link href='/examples/catsVsDogs'><Button color="primary" className={classes.button}>Cats Vs Dogs</Button></Link></div>
-              <div><Link href='/examples/HorsesVsHumans'><Button color="primary" className={classes.button}>Horses Vs Humans</Button></Link></div>
+              <div style={urlParams[1] == "catsVsDogs" ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href='/examples/catsVsDogs'><Button color="primary" className={classes.button}>Cats Vs Dogs</Button></Link></div>
+              <div style={urlParams[1] == "HorsesVsHumans" ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href='/examples/HorsesVsHumans'><Button color="primary" className={classes.button}>Horses Vs Humans</Button></Link></div>
           </AccordionDetails>
         </Accordion>
 
