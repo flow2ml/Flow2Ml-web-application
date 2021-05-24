@@ -29,20 +29,13 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
       marginRight: theme.spacing(2),
     },
-    title: {
-      flexGrow: 1,
-      marginLeft:"20px",
-      marginTop: '5px',
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
-    },
     list: {
       width: 300,
       padding:"5%",
       marginTop: "15px",
       "& div":{
         width:"90%",
-        fontFamily: "Dosis, sans-serif",
+        fontFamily: `var(--font-family)`,
         marginBottom: '10px',
       },
     },
@@ -89,10 +82,10 @@ const useStyles = makeStyles((theme) => ({
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create('width'),
-      fontFamily: "Dosis, sans-serif",
+      fontFamily: `var(--font-family)`,
       width: '100%',
       [theme.breakpoints.up('sm')]: {
-        width: '12ch',
+        width: '20ch',
         '&:focus': {
           width: '20ch',
         },
@@ -130,10 +123,15 @@ export default function DocsNavbar() {
     const [state, setState] = React.useState({
       left: false
     });
+    const [expandedPanel, setExpandedPanel] = React.useState(false);
 
     const toggleDrawer = (anchor, open) => (event) => {
       if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
+        if(expandedPanel == false ){
+          return;
+        }else{
+          console.log("hello")
+        }
       }
   
       setState({[anchor]: open });
@@ -150,12 +148,12 @@ export default function DocsNavbar() {
       >
           <div className={classes.HeaderSideNavDocs}>
             <Avatar alt="Flow2ML" src="/logo.png" style={{'width':'20%'}} variant="round"/>
-            <Link href="/"><h5 className={classes.title}>Flow2Ml</h5></Link>
+            <Link href="/"><h5 className={styles.title}>Flow2Ml</h5></Link>
             <CloseRoundedIcon fontSize='large'/>
           </div>
           <br />
 
-          <Accordion className={classes.AccordionBar}>
+        <Accordion className={classes.AccordionBar} onChange={() => {setExpandedPanel(true); console.log(expandedPanel)}}>
           <AccordionSummary
             aria-controls="panel1a-content"
             id="panel1a-header"
@@ -225,38 +223,40 @@ export default function DocsNavbar() {
                       <Grid item sm={2} xs={4} md={1}>
                         <div className={styles.logoBlock}>
                           <Avatar alt="Flow2ML" src="/logo.png" />
-                          <h5 className={classes.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
+                          <h5 className={styles.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
                         </div>
                       </Grid>
                       <Grid item sm={1}></Grid>
 
                       <Hidden only={['sm', 'xs']}>
-                        <Grid item sm={4} md={5}>
+                        <Grid item sm={5} md={6}>
                             <a onClick={() => goToInstall()}  className={styles.NavLinks}>Installation</a>
                             <a onClick={() => goToDocs()} className={styles.NavLinks}>Documentation</a>
                             <a onClick={() => goToExamples()}  className={styles.NavLinks}>Examples</a>
                         </Grid>
                       </Hidden>
 
-                      <Grid item sm={3} xs={4} md={3}>
-                        <div className={classes.search}>
-                          <div className={classes.searchIcon}>
-                            <SearchIcon />
+                      <Hidden only='xs'>
+                        <Grid item sm={5} xs={4} md={2}>
+                          <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                              <SearchIcon />
+                            </div>
+                            <InputBase
+                              placeholder="Search Docs"
+                              classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                              }}
+                              inputProps={{ 'aria-label': 'search' }}
+                            />
                           </div>
-                          <InputBase
-                            placeholder="Search…"
-                            classes={{
-                              root: classes.inputRoot,
-                              input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                          />
-                        </div>
-                      </Grid>
+                        </Grid>
+                      </Hidden>
 
                       <Hidden only={['sm', 'xs']}>
                         <Grid item sm={1} md={1}>
-                            <Button className={classes.hoverATags} style={{"outline":"0"}} color="primary" variant="contained" href="https://github.com/flow2ml">Github</Button>
+                          <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
                         </Grid>
                       </Hidden>
 

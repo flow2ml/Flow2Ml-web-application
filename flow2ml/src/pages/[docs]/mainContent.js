@@ -141,8 +141,8 @@ export default function Content() {
           <Typography color="textPrimary">{currentPath}</Typography>
         </Breadcrumbs> <br />
 
-        <h1>{currentPath}</h1><br />
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+        <h1 className={styles.mainHeadding}>{currentPath}</h1><br />
+        <p className={styles.fontWeight400}>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
         <Divider variant="fullWidth"/>
         <br />
         <Button
@@ -161,7 +161,7 @@ export default function Content() {
             wrapLines={true}
             className={styles.codeBlock}
           >
-            {`import flow from flow2ml\nflow.getDataset(data, "hello")\nflow.applyFilters(['sobelx', 'sobely'])\noperations = {'flip': 'horizontal', 'rotate': 90, 'shear': {'x_axis': 5, 'y_axis': 15}, 'crop': [50, 100, 50, 100], 'scale': 0.1, 'zoom': 2, 'Hist_Equal':False, 'greyscale': True, 'CLAHE':False, 'invert':False, 'erode':False, 'dilate':False, 'open':False, 'close':False,'threshold':{'type':'adaptive','thresh_val':0},'color-space':{'input':'BGR','output':'BGR'}}`}
+            {`import flow from flow2ml\nflow.getDataset(data)\nflow.applyFilters(['sobelx', 'sobely'])\noperations = {'flip': 'horizontal', 'rotate': 90, 'shear': {'x_axis': 5, 'y_axis': 15}, 'crop': [50, 100, 50, 100], 'scale': 0.1, 'zoom': 2, 'Hist_Equal':False, 'greyscale': True, 'CLAHE':False, 'invert':False, 'erode':False, 'dilate':False, 'open':False, 'close':False,'threshold':{'type':'adaptive','thresh_val':0},'color-space':{'input':'BGR','output':'BGR'}}`}
           </SyntaxHighlighter>
           <Brightness6OutlinedIcon className={styles.DarkLightModeButton} onClick={() => toggleCodeMode()} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
           <FileCopyOutlinedIcon className={styles.CopyButton}  onClick={()=>{navigator.clipboard.writeText("rey po ra rey po ra");handleCopyClick()}} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
@@ -184,14 +184,14 @@ export default function Content() {
         <Divider />
         <br />
 
-        <div className={styles.Functiondescription} id="funcDisc">
+        <div className={styles.fontWeight400} id="funcDisc">
           <h5><strong>Function Description</strong></h5>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
             when an unknown printer took a galley of type and scrambled it to make a type 
             specimen book. It has survived not only five centuries, 
             but also the leap into electronic.</p>
-        </div>
+        </div><br />
 
         <div className={styles.functionNote} id="funcNote">
           <div className={styles.blueNoteFunc}>
@@ -199,7 +199,7 @@ export default function Content() {
               <StarIcon />
               <h6><strong>Note</strong></h6>
             </div>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+              <p className={styles.fontWeight400}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
                 when an unknown printer took a galley of type and scrambled it to make a type 
                 specimen book. It has survived not only five centuries, 

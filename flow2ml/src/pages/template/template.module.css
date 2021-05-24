@@ -89,3 +89,34 @@
         font-family: var(--font-family);
     }
 }
+.title{
+    flex-grow: 1;
+    margin-left: 20px;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.steps{
+    overflow: scroll;
+}
+
+@media only screen and (max-width: 420px) {
+    .orgNameBig, .jumboHeadding{
+        font-size: 40px;
+    }
+    .installBox{
+        overflow: scroll;
+    }
+    .title{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .orgNameBig{
+        font-size: 25px;
+    }
+    .title{
+        display: none;
+    }
+}

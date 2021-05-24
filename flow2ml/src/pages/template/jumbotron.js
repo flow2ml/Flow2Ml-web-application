@@ -14,10 +14,10 @@ export default function Jumbotron() {
                 Check Installation and sample code to flow into your ml model fastly.
                 </p>
                 <br />
-                    <Button href="#installation" style={{"marginLeft":"15px","marginRight":"30px","outline":"0","marginTop":"5px","marginBottom":"5px"}} variant="contained" color="secondary">
+                    <Button href="#installation" className={styles.homeJumboBtn} variant="contained" color="secondary">
                         Installation
-                    </Button>
-                    <Button href="#sampleCode" style={{"marginLeft":"15px","marginRight":"30px","outline":"0","marginTop":"5px","marginBottom":"5px"}} variant="contained" color="primary">
+                    </Button>&emsp;
+                    <Button href="#sampleCode" className={styles.homeJumboBtn} variant="contained" color="primary">
                         Sample Code
                     </Button>
             </div>

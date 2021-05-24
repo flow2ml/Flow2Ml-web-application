@@ -33,12 +33,15 @@ export default function Docs() {
           
           <Grid item sm={1} xs={1} md={1} xl={1}></Grid>
 
-          <Grid item sm={8} xs={12} md={7} xl={7}>
+          <Grid item sm={10} xs={10} md={7} xl={6}>
               <Content />
           </Grid>
+          
+          <Hidden only='xs'>
+            <Grid xl={1}></Grid>
+          </Hidden>
 
-
-          <Grid item sm={7} xs={10} md={2} xl={2}>
+          <Grid item sm={6} xs={10} md={2} xl={2}>
               <TOC />
           </Grid>
 

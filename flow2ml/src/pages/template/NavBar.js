@@ -26,13 +26,6 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
       marginRight: theme.spacing(2),
     },
-    title: {
-      flexGrow: 1,
-      marginLeft:"20px",
-      marginTop: '5px',
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
-    },
     list: {
       width: 300,
       padding:"5%",
@@ -43,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         width:"90%",
         marginLeft:"10px",
-        fontFamily: "Dosis, sans-serif",
+        fontFamily: `var(--font-family)`,
       },
     },
     sideBarLogo: {
@@ -103,10 +96,10 @@ const useStyles = makeStyles((theme) => ({
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create('width'),
-      fontFamily: "Dosis, sans-serif",
+      fontFamily: `var(--font-family)`,
       width: '100%',
       [theme.breakpoints.up('sm')]: {
-        width: '12ch',
+        width: '20ch',
         '&:focus': {
           width: '20ch',
         },
@@ -155,7 +148,7 @@ export default function Navbar() {
 
           <div>
             <Avatar alt="Flow2ML" src="/logo.png" style={{'width':'20%'}} variant="round"/>
-            <h5 className={classes.title}>Flow2Ml</h5>
+            <h5 className={styles.title}>Flow2Ml</h5>
             <CloseRoundedIcon fontSize='large'/>
           </div>
           <Divider />
@@ -205,7 +198,7 @@ export default function Navbar() {
                     direction="row"
                     spacing={1}
                   >
-                      <Grid item sm={1} xs={2} md={1}>
+                      <Grid item sm={1} xs={1} md={1}>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer("left", true)} >
                           <MenuIcon className={classes.menuIconButton}/>
                         </IconButton>
@@ -217,43 +210,45 @@ export default function Navbar() {
                       <Grid item sm={2} xs={4} md={1}>
                         <div className={styles.navbarHeading}>
                         <Avatar alt="Flow2ML" src="/logo.png" variant="round"/>
-                          <h5 className={classes.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
+                          <h5 className={styles.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
                         </div>
                       </Grid>
                       <Grid item sm={1}></Grid>
 
                       <Hidden only={['sm', 'xs']}>
-                        <Grid item sm={4} md={5} className={classes.topBarHeadings}>
+                        <Grid item sm={5} md={6} className={classes.topBarHeadings}>
                             <a onClick={() => goToInstall()}  className={styles.NavLinks}>Installation</a>
                             <a onClick={() => goToDocs()} className={styles.NavLinks}>Documentation</a>
                             <a onClick={() => goToExamples()}  className={styles.NavLinks}>Examples</a>
                         </Grid>
                       </Hidden>
 
-                      <Grid item sm={3} xs={4} md={3}>
-                        <div className={classes.search}>
-                          <div className={classes.searchIcon}>
-                            <SearchIcon />
+                      <Hidden only='xs'>
+                        <Grid item sm={3} md={3}>
+                          <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                              <SearchIcon />
+                            </div>
+                            <InputBase
+                              placeholder="Search Docs"
+                              classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                              }}
+                              inputProps={{ 'aria-label': 'search' }}
+                            />
                           </div>
-                          <InputBase
-                            placeholder="Search…"
-                            classes={{
-                              root: classes.inputRoot,
-                              input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                          />
-                        </div>
-                      </Grid>
+                        </Grid>
+                      </Hidden>
                       
                       <Hidden only={['xs', 'sm']}>
                         <Grid item sm={1} md={1}>
-                            <Button className={classes.hoverATags} style={{"outline":"0"}} color="primary" variant="contained" href="https://github.com/flow2ml">Github</Button>
+                          <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
                         </Grid>
                       </Hidden>
 
                       <Hidden only={['md', 'lg', 'xl']}>
-                        <Grid item xs={1}>
+                        <Grid item xs={3}>
                             <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
                         </Grid>
                       </Hidden>

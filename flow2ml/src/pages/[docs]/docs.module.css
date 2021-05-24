@@ -11,12 +11,17 @@
 .NavLinks:hover{
     text-decoration: none;
 }
+.fontWeight400{
+    font-weight: 400;
+}
+.fontWeight300{
+    font-weight: 300;
+}
 .sideAvailableFunc{
     padding: 12%;
     font-family: var(--font-family);
     overflow: scroll;
-    overflow-x: hidden;
-    max-height: 100vh;
+    max-height: 100%;
 }
 .mainContentBox{
     font-family: var(--font-family);
@@ -62,16 +67,34 @@
     margin-top:-10px;
     margin-right:10px;
 }
-.MuiAccordion-root{
-    background: green;
-    border: none;
-    width: 100%;
-
-}
-
 .blueNoteFunc{
     background-color: rgba(112, 163, 224, 0.4);
     border-radius: 11px;
     padding: 15px;
     color: #01579b;
+}
+.title{
+    flex-grow: 1;
+    margin-left: 20px;
+    margin-top: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 420px) {
+    .mainHeadding{
+        font-size: 40px;
+    }
+    .title{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .mainHeadding{
+        font-size: 25px;
+    }
+    .title{
+        display: none;
+    }
 }
