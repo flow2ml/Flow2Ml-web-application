@@ -4,7 +4,7 @@ import Drawer from '@material-ui/core/Drawer';
 import styles from './docs.module.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { AppBar, Grid } from '@material-ui/core';
+import { AppBar, BottomNavigation, Grid } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -16,6 +16,11 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import Hidden from '@material-ui/core/Hidden';
 import { useRouter } from 'next/router';
 import Avatar from '@material-ui/core/Avatar';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
       flexGrow: 1,
-      marginLeft:"10px",
+      marginLeft:"20px",
+      marginTop: '5px',
+      letterSpacing: '2px',
+      textTransform: 'uppercase',
     },
     list: {
       width: 300,
@@ -34,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "15px",
       "& div":{
         width:"90%",
-        marginLeft:"10px",
         fontFamily: "Dosis, sans-serif",
+        marginBottom: '10px',
       },
     },
     fullList: {
@@ -45,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'around',
         alignItems: 'center',
+    },
+    avatarLarge: {
+      width: '26%',
+      height: theme.spacing(7),
     },
     search: {
       position: 'relative',
@@ -86,22 +98,32 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
+    AccordionBar:{
+      boxShadow: 'none',
+    },
+    installationList:{
+      display: 'block'
+    }
   }));
+
+  const availableFunctionsList = [
+    "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', "applyFilters", 'applyAugumentation', 'Results', 
+  ];
 
 export default function DocsNavbar() {
 
   const router = useRouter()
   const goToDocs = () =>{
-      router.push("/docs/get_started");
+      router.push("/docs/applyFilters");
   }
 
-  // const goToExamples = () =>{
-  //   router.push("/docs/examples");
-  // }
+  const goToExamples = () =>{
+    router.push("/examples/catsVsDogs");
+  }
 
-  // const goToInstall = () =>{
-  //   router.push("/docs/install");
-  // }
+  const goToInstall = () =>{
+    router.push("/installation/pip");
+  }
 
     const classes = useStyles();
 
@@ -127,45 +149,51 @@ export default function DocsNavbar() {
         onKeyDown={toggleDrawer(anchor, false)}
       >
           <div className={classes.HeaderSideNavDocs}>
-          <Avatar alt="Remy Sharp" src="/logo.png" />
-            <h5 className={classes.title}>Flow2Ml</h5>
+            <Avatar alt="Flow2ML" src="/logo.png" style={{'width':'20%'}} variant="round"/>
+            <Link href="/"><h5 className={classes.title}>Flow2Ml</h5></Link>
             <CloseRoundedIcon fontSize='large'/>
           </div>
-          <Divider />
           <br />
 
-          <div className={classes.install}>
-            <h5>Installation</h5>
-            <div>
-                <h6>pip</h6>
-                <h6>Docker</h6>
-            </div>
-          </div>
-          
-          <Divider />
-          <br />
-          
-          <div className={classes.docs}>
-            <h5>Documentation</h5>
-            {/* For loop to get all the functions available as part of flow2ml. */}
-            {/* Attaching sample functions. */}
-            <div>
-                <h6>applyFilters</h6>
-                <h6>applyAugumentation</h6>
-                <h6>Results</h6>
-            </div>
-          </div>
+          <Accordion className={classes.AccordionBar}>
+          <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Installation</Typography>
+          </AccordionSummary>
+          <AccordionDetails className={classes.installationList}>
+              <div><Link href='/installation/pip'><Button color="primary" className={classes.button}>Pip</Button></Link></div>
+              <div><Link href='/installation/docker'><Button color="primary" className={classes.button}>Docker</Button></Link></div>
+          </AccordionDetails>
+        </Accordion>
 
-          <Divider />
-          <br />
-
-          <div className={classes.examples}>
-            <h5>Examples</h5>
-            <div>
-                <h6>cats Vs Dogs</h6>
-                <h6>Horses vs Humans</h6>
-            </div>
-          </div>
+        <Accordion className={classes.AccordionBar}>
+          <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Documentation</Typography>
+          </AccordionSummary>
+          <AccordionDetails className={classes.installationList}>
+            {availableFunctionsList.map((func) => (
+                <div><Link href={'/docs/'+func}><Button color="primary" key={func} className={classes.button}>{func}</Button></Link></div>
+            ))}
+          </AccordionDetails>
+        </Accordion>
+        
+        <Accordion className={classes.AccordionBar}>
+          <AccordionSummary
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Examples</Typography>
+          </AccordionSummary>
+          <AccordionDetails className={classes.installationList}>
+              <div><Link href='/docs/examples'><Button color="primary" className={classes.button}>Cats Vs Dogs</Button></Link></div>
+              <div><Link href='/docs/examples'><Button color="primary" className={classes.button}>Horses Vs Humans</Button></Link></div>
+          </AccordionDetails>
+        </Accordion>
       </div>
     );
 
@@ -196,7 +224,7 @@ export default function DocsNavbar() {
                 
                       <Grid item sm={2} xs={4} md={1}>
                         <div className={styles.logoBlock}>
-                          <Avatar alt="Remy Sharp" src="/logo.png" />
+                          <Avatar alt="Flow2ML" src="/logo.png" />
                           <h5 className={classes.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
                         </div>
                       </Grid>
@@ -204,9 +232,9 @@ export default function DocsNavbar() {
 
                       <Hidden only={['sm', 'xs']}>
                         <Grid item sm={4} md={5}>
-                            <a href="#installation" className={styles.NavLinks}>Installation</a>
+                            <a onClick={() => goToInstall()}  className={styles.NavLinks}>Installation</a>
                             <a onClick={() => goToDocs()} className={styles.NavLinks}>Documentation</a>
-                            <a href="#" className={styles.NavLinks}>Examples</a>
+                            <a onClick={() => goToExamples()}  className={styles.NavLinks}>Examples</a>
                         </Grid>
                       </Hidden>
 
@@ -226,13 +254,13 @@ export default function DocsNavbar() {
                         </div>
                       </Grid>
 
-                      <Hidden only='xs'>
+                      <Hidden only={['sm', 'xs']}>
                         <Grid item sm={1} md={1}>
                             <Button className={classes.hoverATags} style={{"outline":"0"}} color="primary" variant="contained" href="https://github.com/flow2ml">Github</Button>
                         </Grid>
                       </Hidden>
 
-                      <Hidden only={['sm', 'md', 'lg', 'xl']}>
+                      <Hidden only={['md', 'lg', 'xl']}>
                         <Grid item sm={1}>
                             <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
                         </Grid>

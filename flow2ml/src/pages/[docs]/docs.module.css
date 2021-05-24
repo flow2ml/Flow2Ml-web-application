@@ -3,11 +3,13 @@
     text-decoration: none;
     margin-left: 5px;
     margin-right: 5px;
+    padding: 20px;
     font-family: var(--font-family);
+    color:var(--documentation-text-color-inactive);
+    font-weight: var(--font-weight);
 }
 .NavLinks:hover{
-    color: rgba(0,0,0,0.6);
-    font-family: var(--font-family);
+    text-decoration: none;
 }
 .sideAvailableFunc{
     padding: 12%;
@@ -40,8 +42,8 @@
     display: flex;
     align-items: center;
 }
-.logoBlock img{
-    border-radius:10px;
+.MuiAvatar-img{
+    width:26%;
 }
 .orgNameBig{
     color:red;
@@ -59,4 +61,17 @@
     border-radius:10px;
     margin-top:-10px;
     margin-right:10px;
+}
+.MuiAccordion-root{
+    background: green;
+    border: none;
+    width: 100%;
+
+}
+
+.blueNoteFunc{
+    background-color: rgba(112, 163, 224, 0.4);
+    border-radius: 11px;
+    padding: 15px;
+    color: #01579b;
 }
