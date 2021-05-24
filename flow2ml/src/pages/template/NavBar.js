@@ -17,6 +17,7 @@ import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import EmojiObjectsRoundedIcon from '@material-ui/icons/EmojiObjectsRounded';
 import { useRouter } from 'next/router';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
       flexGrow: 1,
-      marginLeft:"10px",
+      marginLeft:"20px",
+      marginTop: '5px',
+      letterSpacing: '2px',
+      textTransform: 'uppercase',
     },
     list: {
       width: 300,
@@ -114,16 +118,16 @@ export default function Navbar() {
 
   const router = useRouter()
   const goToDocs = () =>{
-      router.push("/docs/get_started");
+      router.push("/docs/applyFilters");
   }
 
-  // const goToExamples = () =>{
-  //   router.push("/docs/examples");
-  // }
+  const goToExamples = () =>{
+    router.push("/examples/catsVsDogs");
+  }
 
-  // const goToInstall = () =>{
-  //   router.push("/docs/install");
-  // }
+  const goToInstall = () =>{
+    router.push("/installation/pip");
+  }
 
     const classes = useStyles();
 
@@ -150,14 +154,14 @@ export default function Navbar() {
       >
 
           <div>
-            <img className={classes.sideBarLogo} src="logo.png"/>
+            <Avatar alt="Flow2ML" src="/logo.png" style={{'width':'20%'}} variant="round"/>
             <h5 className={classes.title}>Flow2Ml</h5>
             <CloseRoundedIcon fontSize='large'/>
           </div>
           <Divider />
           <br />
 
-          <div>
+          <div onClick={() => goToInstall()}>
             <h5 className={classes.sideNavName}>Install</h5>
             <GetAppRoundedIcon fontSize='medium'/>
           </div>
@@ -166,6 +170,13 @@ export default function Navbar() {
 
           <div onClick={() => goToDocs()}>
             <h5 className={classes.sideNavName}>Documentation</h5>
+            <EmojiObjectsRoundedIcon fontSize='medium'/>
+          </div>
+          <Divider />
+          <br />
+
+          <div onClick={() => goToExamples()}>
+            <h5 className={classes.sideNavName}>Examples</h5>
             <EmojiObjectsRoundedIcon fontSize='medium'/>
           </div>
           <Divider />
@@ -205,7 +216,7 @@ export default function Navbar() {
                 
                       <Grid item sm={2} xs={4} md={1}>
                         <div className={styles.navbarHeading}>
-                          <img className={classes.sideBarLogo} src="logo.png" width="50" height="50" style={{"marginRight":"5px"}}/>
+                        <Avatar alt="Flow2ML" src="/logo.png" variant="round"/>
                           <h5 className={classes.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
                         </div>
                       </Grid>
@@ -213,9 +224,9 @@ export default function Navbar() {
 
                       <Hidden only={['sm', 'xs']}>
                         <Grid item sm={4} md={5} className={classes.topBarHeadings}>
-                            <a href="#installation" className={styles.NavLinks}>Installation</a>
+                            <a onClick={() => goToInstall()}  className={styles.NavLinks}>Installation</a>
                             <a onClick={() => goToDocs()} className={styles.NavLinks}>Documentation</a>
-                            <a href="#" className={styles.NavLinks}>Examples</a>
+                            <a onClick={() => goToExamples()}  className={styles.NavLinks}>Examples</a>
                         </Grid>
                       </Hidden>
 

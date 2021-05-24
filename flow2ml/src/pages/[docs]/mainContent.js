@@ -29,7 +29,7 @@ function Alert(props) {
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: 'rgba(250,251,255,255)',
+    backgroundColor: 'rgba(230,231,235,0.7)',
     color: 'rgba(115,120,148,255)',
   },
   body: {
@@ -50,6 +50,8 @@ function createData(parameterName, Type, Description) {
 }
 
 const rows = [
+  createData('filters', "List", "python list containing various filters to be applied to the image data."),
+  createData('filters', "List", "python list containing various filters to be applied to the image data."),
   createData('filters', "List", "python list containing various filters to be applied to the image data.")
 ];
 
@@ -69,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 700,
+    border:"2px solid rgba(237,239,245,255)"
   },
   textBackgroundTable:{
     border: '2px solid rgba(222,230,255,255)',
@@ -89,23 +92,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly',
     width: '10%'
   },
-  sideNote:{
-    backgroundColor: 'rgba(112, 163, 224, 0.4)',
-    borderRadius: '11px',
-    padding: '15px',
-    color: '#01579b',
-    '& p':{
-      marginTop: '10px',
-    }
-  }
 }));
 
-export default function Content({selectedFunction}) {
+export default function Content() {
   const router = useRouter();
   const classes = useStyles();
   const [mode, setMode] = useState('dark');
   
-  var urlParams = router.pathname.split("/");
+  var urlParams = router.asPath.split("/")
   urlParams.shift();
   var currentPath = urlParams.slice(-1);
   urlParams.pop();
@@ -142,12 +136,12 @@ export default function Content({selectedFunction}) {
         <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>Flow2ML</Link>
           {urlParams.map((path) => (
-            <Link color="inherit" href="/" onClick={handleClick}>{path}</Link>
+            <Link color="inherit" key={path} href="/" onClick={handleClick}>{path}</Link>
           ))}
           <Typography color="textPrimary">{currentPath}</Typography>
         </Breadcrumbs> <br />
 
-        <h1>{selectedFunction}</h1><br />
+        <h1>{currentPath}</h1><br />
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
         <Divider variant="fullWidth"/>
         <br />
@@ -160,7 +154,7 @@ export default function Content({selectedFunction}) {
           View source on GitHub
         </Button>
 
-        <div className={styles.codeArea}>
+        <div className={styles.codeArea} id="codeSnippet">
           <SyntaxHighlighter
             language="python"
             style={mode=="light" ? prism : materialOceanic}
@@ -169,8 +163,8 @@ export default function Content({selectedFunction}) {
           >
             {`import flow from flow2ml\nflow.getDataset(data, "hello")\nflow.applyFilters(['sobelx', 'sobely'])\noperations = {'flip': 'horizontal', 'rotate': 90, 'shear': {'x_axis': 5, 'y_axis': 15}, 'crop': [50, 100, 50, 100], 'scale': 0.1, 'zoom': 2, 'Hist_Equal':False, 'greyscale': True, 'CLAHE':False, 'invert':False, 'erode':False, 'dilate':False, 'open':False, 'close':False,'threshold':{'type':'adaptive','thresh_val':0},'color-space':{'input':'BGR','output':'BGR'}}`}
           </SyntaxHighlighter>
-          <Brightness6OutlinedIcon className={styles.DarkLightModeButton} onClick={() => toggleCodeMode()} fontSize='small' />
-          <FileCopyOutlinedIcon className={styles.CopyButton}  onClick={()=>{navigator.clipboard.writeText("rey po ra rey po ra");handleCopyClick()}} fontSize='small' />
+          <Brightness6OutlinedIcon className={styles.DarkLightModeButton} onClick={() => toggleCodeMode()} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
+          <FileCopyOutlinedIcon className={styles.CopyButton}  onClick={()=>{navigator.clipboard.writeText("rey po ra rey po ra");handleCopyClick()}} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
 
           <Snackbar
             open={open}
@@ -190,7 +184,7 @@ export default function Content({selectedFunction}) {
         <Divider />
         <br />
 
-        <div className={styles.Functiondescription}>
+        <div className={styles.Functiondescription} id="funcDisc">
           <h5><strong>Function Description</strong></h5>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
@@ -199,8 +193,8 @@ export default function Content({selectedFunction}) {
             but also the leap into electronic.</p>
         </div>
 
-        <div className={styles.functionNote}>
-          <div className={classes.sideNote}>
+        <div className={styles.functionNote} id="funcNote">
+          <div className={styles.blueNoteFunc}>
             <div className={classes.sideNoteHeading}>
               <StarIcon />
               <h6><strong>Note</strong></h6>
@@ -216,7 +210,7 @@ export default function Content({selectedFunction}) {
         <Divider />
         <br />
 
-        <div className={styles.parametersToFunction}>
+        <div className={styles.parametersToFunction} id="funcArgs">
           <h5><strong>Args</strong></h5><br />
           <div className={styles.table}>
             <TableContainer component={Paper}>

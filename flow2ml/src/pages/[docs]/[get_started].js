@@ -8,11 +8,7 @@ import AvailableFunctions from "./availableFunctions"
 import Content from "./mainContent"
 import TOC from './tableOfContents'
 
-export default function Home() {
-  const [selectedFunction, setSelectedFunction] = useState('');
-  const returnSelectedFunction = (funcName) => {
-    setSelectedFunction(funcName);
-  }
+export default function Docs() {
   return (
     <div className={styles.container}>
       <Head>
@@ -31,14 +27,14 @@ export default function Home() {
 
           <Hidden only={['xs', 'sm']}>
             <Grid item sm={2} xs={2} md={2} xl={2}>
-              <AvailableFunctions returnSelectedFunction={returnSelectedFunction}/>
+              <AvailableFunctions />
             </Grid>
           </Hidden>
           
           <Grid item sm={1} xs={1} md={1} xl={1}></Grid>
 
           <Grid item sm={8} xs={12} md={7} xl={7}>
-              <Content selectedFunction={selectedFunction}/>
+              <Content />
           </Grid>
 
 

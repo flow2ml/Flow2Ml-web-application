@@ -3,13 +3,14 @@
     text-decoration: none;
     margin-left: 5px;
     margin-right: 5px;
+    padding: 20px;
     font-family: var(--font-family);
+    color:var(--documentation-text-color-inactive);
+    font-weight: var(--font-weight);
 }
 .NavLinks:hover{
-    color: rgba(0,0,0,0.6);
-    font-family: var(--font-family);
+    text-decoration: none;
 }
-
 .orgName{
     font-size: 30px;
     font-family: var(--font-family);

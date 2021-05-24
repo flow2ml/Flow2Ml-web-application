@@ -9,8 +9,8 @@ function ListItemLink(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
-    listGrp:{
-        borderLeft: '8px solid #70a3e0',
+    TOCContentsPage:{
+        borderLeft: '6px solid #70a3e0!important',
     }
 }));
 
@@ -19,17 +19,17 @@ export default function TOC() {
   return (
     <div className={styles.toc}>
         <h5>This Page Contains</h5>
-        <List component="nav" className={classes.listGrp} aria-label="secondary mailbox folders">
-            <ListItemLink className={classes.listItem} href="#simple-list">
+        <List component="nav" className={classes.TOCContentsPage} aria-label="secondary mailbox folders">
+            <ListItemLink className={classes.listItem} href="#codeSnippet">
                 <ListItemText primary="Code Snippet" />
             </ListItemLink>
-            <ListItemLink className={classes.listItem} href="#simple-list">
+            <ListItemLink className={classes.listItem} href="#funcDisc">
                 <ListItemText primary="Function Description" />
             </ListItemLink>
-            <ListItemLink href="#simple-list">
+            <ListItemLink href="#funcNote">
                 <ListItemText primary="Note" />
             </ListItemLink>
-            <ListItemLink href="#simple-list">
+            <ListItemLink href="#funcArgs">
                 <ListItemText primary="Args" />
             </ListItemLink>
       </List>
