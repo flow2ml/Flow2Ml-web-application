@@ -14,10 +14,15 @@ const useStyles = makeStyles((theme) => ({
     color:`var(--documentation-text-color-inactive)`,
     textTransform: 'none',
     letterSpacing: theme.spacing(0.2),
+    width:"120%",
     '&:focus':{
       outline:'none',
       color:`var(--documentation-text-color-active)`,
-    }
+    },
+    '& span':{
+      textAlign: 'left',
+    },
+    justifyContent: "flex-start"
   },
   AccordionBar:{
     boxShadow: 'none!important',
@@ -27,11 +32,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const availableFunctionsList = [
-  "applyFilters", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', 
-];
-
-export default function AvailableFunctions() {
+export default function AvailableFunctions({install_side_bar_data, docs_side_bar_data}) {
+  
   const router = useRouter()
   const classes = useStyles();
 
@@ -41,8 +43,8 @@ export default function AvailableFunctions() {
 
   return (
     <div className={styles.sideAvailableFunc}>
-
-        <Accordion className={classes.AccordionBar} defaultExpanded={ currentPath === "installation" ? (true) : (false)}>
+        {install_side_bar_data.is_data_found ? (
+          <Accordion className={classes.AccordionBar} defaultExpanded={ currentPath === "installation" ? (true) : (false)}>
           <AccordionSummary
             aria-controls="panel1a-content"
             id="panel1a-header"
@@ -50,11 +52,14 @@ export default function AvailableFunctions() {
             <Typography className={classes.heading}>Installation</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
-              <div style={urlParams[1] == "pip" ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href='/installation/pip'><Button color="primary" className={classes.button}>Pip</Button></Link></div>
-              <div style={urlParams[1] == "docker" ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href='/installation/docker'><Button color="primary" className={classes.button}>Docker</Button></Link></div>
+              {install_side_bar_data.page_data.map((installation_Method) => (
+                <div key={installation_Method.method} style={urlParams[1] == installation_Method.method ? {'color':`var(--documentation-text-color-active)`, "width": "110%", 'backgroundColor': 'rgba(213,216,215,1)', 'borderRadius': '5px'} : {}}><Link href={'/installation/'+installation_Method.method}><Button color="primary" className={classes.button}>{installation_Method.method}</Button></Link></div>
+                ))}
           </AccordionDetails>
         </Accordion>
+        ) : (null)}
         
+        {docs_side_bar_data.is_data_found ? (
         <Accordion className={classes.AccordionBar} defaultExpanded={ currentPath == "docs" ? (true) : (false)}>
           <AccordionSummary
             aria-controls="panel1a-content"
@@ -63,11 +68,12 @@ export default function AvailableFunctions() {
             <Typography className={classes.heading}>Documentation</Typography>
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
-            {availableFunctionsList.map((func) => (
-                <div style={urlParams[1] == func ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href={'/docs/'+func}><Button color="primary" key={func} className={classes.button}>{func}</Button></Link></div>
-            ))}
+              {docs_side_bar_data.page_data.map((func_Method) => (
+                <div key={func_Method.method} style={urlParams[1] == func_Method.method ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href={'/docs/'+func_Method.method}><Button color="primary" className={classes.button}>{func_Method.method}</Button></Link></div>
+              ))}
           </AccordionDetails>
         </Accordion>
+        ): (null) }
 
         <Accordion className={classes.AccordionBar} defaultExpanded={ currentPath == "examples" ? (true) : (false)}>
           <AccordionSummary

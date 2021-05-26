@@ -18,10 +18,10 @@
     font-weight: 300;
 }
 .sideAvailableFunc{
-    padding: 12%;
     font-family: var(--font-family);
     overflow: scroll;
     max-height: 100%;
+    overflow-x: hidden;
 }
 .mainContentBox{
     font-family: var(--font-family);
@@ -33,19 +33,26 @@
     align-items: center;
     position: relative;
 }
+.codeBlock{
+    width: 100%;
+    border-radius: 8px;
+}
 .codeArea .DarkLightModeButton{
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 92%;
 }
 .codeArea .CopyButton{
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 96%;
 }
 .logoBlock{
     display: flex;
     align-items: center;
+}
+.tocContentsPage{
+    border-left: '6px solid #70a3e0!important';
 }
 .MuiAvatar-img{
     width:26%;
@@ -59,6 +66,7 @@
     font-family: var(--font-family);
     color:var(--documentation-text-color-inactive);
     padding: 20px;
+    border-left: '6px solid #70a3e0!important';
 } 
 .sideBarLogo{
     width:50px;

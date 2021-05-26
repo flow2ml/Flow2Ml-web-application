@@ -175,7 +175,7 @@ export default function DocsNavbar() {
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
             {availableFunctionsList.map((func) => (
-                <div><Link href={'/docs/'+func}><Button color="primary" key={func} className={classes.button}>{func}</Button></Link></div>
+                <div key={func}><Link href={'/docs/'+func}><Button color="primary" className={classes.button}>{func}</Button></Link></div>
             ))}
           </AccordionDetails>
         </Accordion>
@@ -256,13 +256,13 @@ export default function DocsNavbar() {
 
                       <Hidden only={['sm', 'xs']}>
                         <Grid item sm={1} md={1}>
-                          <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
+                          <a href="https://github.com/flow2ml"><GitHubIcon /></a>
                         </Grid>
                       </Hidden>
 
                       <Hidden only={['md', 'lg', 'xl']}>
                         <Grid item sm={1}>
-                            <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
+                            <a href="https://github.com/flow2ml"><GitHubIcon /></a>
                         </Grid>
                       </Hidden>
                     </Grid>

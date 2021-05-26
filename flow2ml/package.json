@@ -12,6 +12,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "bootstrap": "^4.5.3",
+    "mongodb": "^3.6.8",
     "next": "10.0.4",
     "react": "17.0.1",
     "react-bootstrap": "^1.4.0",
