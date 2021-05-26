@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const availableFunctionsList = [
-  "applyFilters", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', "applyFilters1", 'applyAugumentation', 'Results', 
+  "applyFilters", 'applyAugmentation', 'Results'
 ];
 
 export default function AvailableFunctions() {
@@ -64,7 +64,7 @@ export default function AvailableFunctions() {
           </AccordionSummary>
           <AccordionDetails className={classes.installationList}>
             {availableFunctionsList.map((func) => (
-                <div style={urlParams[1] == func ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href={'/docs/'+func}><Button color="primary" key={func} className={classes.button}>{func}</Button></Link></div>
+                <div key={func} style={urlParams[1] == func ? {'color':`var(--documentation-text-color-active)`, 'backgroundColor': 'rgba(213,216,215,1)', 'width': '187%', 'borderRadius': '5px'} : {}}><Link href={'/docs/'+func}><Button color="primary" className={classes.button}>{func}</Button></Link></div>
             ))}
           </AccordionDetails>
         </Accordion>

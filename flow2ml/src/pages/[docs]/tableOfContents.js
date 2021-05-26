@@ -8,22 +8,16 @@ function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
 }
 
-const useStyles = makeStyles((theme) => ({
-    TOCContentsPage:{
-        borderLeft: '6px solid #70a3e0!important',
-    }
-}));
 
 export default function TOC() {
-    const classes = useStyles();
   return (
     <div className={styles.toc}>
         <h5>This Page Contains</h5>
-        <List component="nav" className={classes.TOCContentsPage} aria-label="secondary mailbox folders">
-            <ListItemLink className={classes.listItem} href="#codeSnippet">
+        <List component="nav" style={{"borderLeft":"6px solid #70a3e0!important"}} aria-label="secondary mailbox folders">
+            <ListItemLink href="#codeSnippet">
                 <ListItemText primary="Code Snippet" />
             </ListItemLink>
-            <ListItemLink className={classes.listItem} href="#funcDisc">
+            <ListItemLink href="#funcDisc">
                 <ListItemText primary="Function Description" />
             </ListItemLink>
             <ListItemLink href="#funcNote">

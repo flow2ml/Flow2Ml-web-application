@@ -101,7 +101,7 @@
 }
 
 @media only screen and (max-width: 420px) {
-    .orgNameBig, .jumboHeadding{
+    .orgNameBig, .jumboHeadding, {
         font-size: 40px;
     }
     .installBox{

@@ -23,6 +23,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { useRouter } from 'next/router'
 
+
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -44,16 +45,6 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
-
-function createData(parameterName, Type, Description) {
-  return { parameterName, Type, Description };
-}
-
-const rows = [
-  createData('filters', "List", "python list containing various filters to be applied to the image data."),
-  createData('filters', "List", "python list containing various filters to be applied to the image data."),
-  createData('filters', "List", "python list containing various filters to be applied to the image data.")
-];
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -94,7 +85,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Content() {
+export default function Content({page_content}) {
+
+  const page_value = page_content.page_data;
+
   const router = useRouter();
   const classes = useStyles();
   const [mode, setMode] = useState('dark');
@@ -115,6 +109,18 @@ export default function Content() {
     }else{
       setMode("light")
     }
+  }
+
+  function createData(parameterName, Type, Description) {
+    return { parameterName, Type, Description };
+  }
+  
+  if(page_value.Args.is_present){
+    var rows = [];
+    page_value.Args.rows.map((row) => {
+      var args_value = createData(row.Parameter, row.Type, row.Description)
+      rows.push(args_value)
+    })
   }
 
   const [open, setOpen] = React.useState(false);
@@ -142,29 +148,33 @@ export default function Content() {
         </Breadcrumbs> <br />
 
         <h1 className={styles.mainHeadding}>{currentPath}</h1><br />
-        <p className={styles.fontWeight400}>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+        {page_content.is_data_found ? (<p className={styles.fontWeight400}>{page_value.sideHeadding}</p>) : (null)}
         <Divider variant="fullWidth"/>
         <br />
-        <Button
-          variant="contained"
-          size="large"
-          className={classes.button}
-          startIcon={<GitHubIcon />}
-        >
-          View source on GitHub
-        </Button>
 
+        {page_value.view_src_on_gitHub.is_present ? (
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.button}
+              startIcon={<GitHubIcon />}
+              href={page_value.view_src_on_gitHub.link}
+            >
+              View source on GitHub
+            </Button>
+        ) : (null)}
+        
         <div className={styles.codeArea} id="codeSnippet">
           <SyntaxHighlighter
-            language="python"
+            language={page_value.sample_code.language}
             style={mode=="light" ? prism : materialOceanic}
             wrapLines={true}
             className={styles.codeBlock}
           >
-            {`import flow from flow2ml\nflow.getDataset(data)\nflow.applyFilters(['sobelx', 'sobely'])\noperations = {'flip': 'horizontal', 'rotate': 90, 'shear': {'x_axis': 5, 'y_axis': 15}, 'crop': [50, 100, 50, 100], 'scale': 0.1, 'zoom': 2, 'Hist_Equal':False, 'greyscale': True, 'CLAHE':False, 'invert':False, 'erode':False, 'dilate':False, 'open':False, 'close':False,'threshold':{'type':'adaptive','thresh_val':0},'color-space':{'input':'BGR','output':'BGR'}}`}
+            {page_value.sample_code.code}
           </SyntaxHighlighter>
           <Brightness6OutlinedIcon className={styles.DarkLightModeButton} onClick={() => toggleCodeMode()} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
-          <FileCopyOutlinedIcon className={styles.CopyButton}  onClick={()=>{navigator.clipboard.writeText("rey po ra rey po ra");handleCopyClick()}} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
+          <FileCopyOutlinedIcon className={styles.CopyButton}  onClick={()=>{navigator.clipboard.writeText(page_value.sample_code.code);handleCopyClick()}} style={mode === "dark" ? {'color':'rgba(255,255,255,0.8)'} : {} } fontSize='small' />
 
           <Snackbar
             open={open}
@@ -183,60 +193,54 @@ export default function Content() {
         <br />
         <Divider />
         <br />
-
+        
+        {page_value.function_description.is_present ? (
         <div className={styles.fontWeight400} id="funcDisc">
           <h5><strong>Function Description</strong></h5>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type 
-            specimen book. It has survived not only five centuries, 
-            but also the leap into electronic.</p>
-        </div><br />
-
+          <p>{page_value.function_description.data}</p><br />
+        </div>): (null)}
+            
+        {page_value.note.is_present ? (
         <div className={styles.functionNote} id="funcNote">
           <div className={styles.blueNoteFunc}>
             <div className={classes.sideNoteHeading}>
               <StarIcon />
               <h6><strong>Note</strong></h6>
             </div>
-              <p className={styles.fontWeight400}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type 
-                specimen book. It has survived not only five centuries, 
-                but also the leap into electronic.</p>
-          </div>
-        </div>
-        <br />
-        <Divider />
-        <br />
+              <p className={styles.fontWeight400}>{page_value.note.data}</p>
+          </div><br />
+          <Divider />
+          <br />
+        </div>):(null)}
 
-        <div className={styles.parametersToFunction} id="funcArgs">
-          <h5><strong>Args</strong></h5><br />
-          <div className={styles.table}>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>Parameter</StyledTableCell>
-                    <StyledTableCell>Type</StyledTableCell>
-                    <StyledTableCell>Description</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                      <StyledTableCell>
-                        <span className={classes.textBackgroundTable}>{row.parameterName}</span>
-                      </StyledTableCell>
-                      <StyledTableCell>{row.Type}</StyledTableCell>
-                      <StyledTableCell>{row.Description}</StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </div>
+        {page_value.Args.is_present ? (
+          <div className={styles.parametersToFunction} id="funcArgs">
+            <h5><strong>Args</strong></h5><br />
+            <div className={styles.table}>
+              <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="customized table">
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>Parameter</StyledTableCell>
+                      <StyledTableCell>Type</StyledTableCell>
+                      <StyledTableCell>Description</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => (
+                      <StyledTableRow key={row.name}>
+                        <StyledTableCell>
+                          <span className={classes.textBackgroundTable}>{row.parameterName}</span>
+                        </StyledTableCell>
+                        <StyledTableCell>{row.Type}</StyledTableCell>
+                        <StyledTableCell>{row.Description}</StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </div>) : (null)}
     </div>
   )
 }
