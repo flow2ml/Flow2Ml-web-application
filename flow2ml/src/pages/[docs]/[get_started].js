@@ -7,9 +7,21 @@ import DocsNavbar from "./docsNav"
 import AvailableFunctions from "./availableFunctions"
 import Content from "./mainContent"
 import TOC from './tableOfContents'
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  loading: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
 
 export default function Docs({page_value, install_side_bar_data, docs_side_bar_data}) {
-  // console.log(install_side_bar_data, docs_side_bar_data)
+  const classes = useStyles();
   return (
     <div className={styles.container}>
       <Head>
@@ -29,14 +41,14 @@ export default function Docs({page_value, install_side_bar_data, docs_side_bar_d
 
           <Hidden only={['xs', 'sm']}>
             <Grid item sm={2} xs={2} md={2} xl={2}>
-              <AvailableFunctions />
+            {(install_side_bar_data != null && install_side_bar_data != undefined) && (install_side_bar_data.is_data_found) ? (<AvailableFunctions install_side_bar_data={install_side_bar_data} docs_side_bar_data={docs_side_bar_data} />) : (<div className={classes.loading}><LinearProgress /></div>)}
             </Grid>
           </Hidden>
           
           <Grid item sm={1} xs={1} md={1} xl={1}></Grid>
 
           <Grid item sm={10} xs={10} md={7} xl={6}>
-              {(page_value != null && page_value != undefined) && (page_value.is_data_found) ? (<Content page_content={page_value}/>) : (null)}
+              {(page_value != null && page_value != undefined) && (page_value.is_data_found) ? (<Content page_content={page_value}/>) : (<div className={classes.loading}><LinearProgress color="secondary" /></div>)}
           </Grid>
           
           <Hidden only='xs'>
@@ -68,14 +80,14 @@ export const getStaticProps = async (context) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    },body: JSON.stringify({type: "installation"}) 
+    },body: JSON.stringify({type: "installation"})
   }
 
   const docs_options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    },body: JSON.stringify({type: "docs"}) 
+    },body: JSON.stringify({type: "docs"})
   }
 
   // const examples_options = {

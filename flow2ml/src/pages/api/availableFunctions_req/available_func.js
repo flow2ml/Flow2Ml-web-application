@@ -7,7 +7,8 @@ export default async (req,res) => {
 
         const page_data = await db
             .collection("documentation")
-            .findOne({type: funcType})
+            .find({type: funcType})
+            .toArray();
 
         return page_data;
       }
@@ -15,12 +16,12 @@ export default async (req,res) => {
       var page_data = await getDetails(req.body.type);
 
     if(page_data){
-        res.send({
+        res.json({
             is_data_found:true,
             page_data:page_data
         })
     }else{
-        res.send({
+        res.json({
             is_data_found:false,
             page_data:null
         })

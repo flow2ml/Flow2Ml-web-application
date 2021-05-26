@@ -147,7 +147,7 @@ export default function Navbar() {
       >
 
           <div>
-            <Avatar alt="Flow2ML" src="/logo.png" style={{'width':'20%'}} variant="round"/>
+            <Avatar alt="Flow2ML" src="/logo.png" style={{'width':'20%'}} variant="rounded"/>
             <h5 className={styles.title}>Flow2Ml</h5>
             <CloseRoundedIcon fontSize='large'/>
           </div>
@@ -156,28 +156,28 @@ export default function Navbar() {
 
           <div onClick={() => goToInstall()}>
             <h5 className={classes.sideNavName}>Install</h5>
-            <GetAppRoundedIcon fontSize='medium'/>
+            <GetAppRoundedIcon />
           </div>
           <Divider />
           <br />
 
           <div onClick={() => goToDocs()}>
             <h5 className={classes.sideNavName}>Documentation</h5>
-            <EmojiObjectsRoundedIcon fontSize='medium'/>
+            <EmojiObjectsRoundedIcon />
           </div>
           <Divider />
           <br />
 
           <div onClick={() => goToExamples()}>
             <h5 className={classes.sideNavName}>Examples</h5>
-            <EmojiObjectsRoundedIcon fontSize='medium'/>
+            <EmojiObjectsRoundedIcon />
           </div>
           <Divider />
           <br />
 
           <div>
             <h5 className={classes.sideNavName}>Github</h5>
-            <GitHubIcon fontSize='medium'/>
+            <GitHubIcon />
           </div>
           <Divider />
           <br />
@@ -209,14 +209,14 @@ export default function Navbar() {
                 
                       <Grid item sm={2} xs={4} md={1}>
                         <div className={styles.navbarHeading}>
-                        <Avatar alt="Flow2ML" src="/logo.png" variant="round"/>
+                        <Avatar alt="Flow2ML" src="/logo.png" variant="rounded"/>
                           <h5 className={styles.title}>Flow<span className={styles.highlightNumber}>2</span>ML</h5>
                         </div>
                       </Grid>
                       <Grid item sm={1}></Grid>
 
                       <Hidden only={['sm', 'xs']}>
-                        <Grid item sm={5} md={6} className={classes.topBarHeadings}>
+                        <Grid item sm={5} md={5} className={classes.topBarHeadings}>
                             <a onClick={() => goToInstall()}  className={styles.NavLinks}>Installation</a>
                             <a onClick={() => goToDocs()} className={styles.NavLinks}>Documentation</a>
                             <a onClick={() => goToExamples()}  className={styles.NavLinks}>Examples</a>
@@ -243,13 +243,13 @@ export default function Navbar() {
                       
                       <Hidden only={['xs', 'sm']}>
                         <Grid item sm={1} md={1}>
-                          <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
+                          <a href="https://github.com/flow2ml"><GitHubIcon /></a>
                         </Grid>
                       </Hidden>
 
                       <Hidden only={['md', 'lg', 'xl']}>
                         <Grid item xs={3}>
-                            <a href="https://github.com/flow2ml"><GitHubIcon fontSize='medium'/></a>
+                            <a href="https://github.com/flow2ml"><GitHubIcon /></a>
                         </Grid>
                       </Hidden>
                     </Grid>

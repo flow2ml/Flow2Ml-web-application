@@ -18,10 +18,10 @@
     font-weight: 300;
 }
 .sideAvailableFunc{
-    padding: 12%;
     font-family: var(--font-family);
     overflow: scroll;
     max-height: 100%;
+    overflow-x: hidden;
 }
 .mainContentBox{
     font-family: var(--font-family);
